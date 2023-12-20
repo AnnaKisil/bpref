@@ -16,7 +16,6 @@ def main(cfg):
     vid_path = os.path.join(model_dir, 'video_test.mp4')
     env = utils.make_metaworld_env(cfg)
     env = RecordVideo(env, 'video_bpref')
-    # env.render_mode = 'rgb_array'
 
     # vid_recorder = VideoRecorder(env, vid_path, enabled=True)
 
@@ -53,8 +52,11 @@ def main(cfg):
     #         agent.reset()
     #         vid_recorder.close()
     #         vid_recorder.enable = False
-    modes = env.metadata
+
+    modes = env.metadata.get("render.modes", [])
     print(modes)
+
+    
     obs = env.reset()
     env.start_video_recorder()
     print('1')

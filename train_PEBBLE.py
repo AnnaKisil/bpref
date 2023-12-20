@@ -49,6 +49,7 @@ class Workspace(object):
             float(self.env.action_space.high.max())
         ]
         self.agent = hydra.utils.instantiate(cfg.agent)
+        print(type(self.agent))
 
         self.replay_buffer = ReplayBuffer(
             self.env.observation_space.shape,
@@ -161,11 +162,12 @@ class Workspace(object):
                 total_acc = np.mean(train_acc)
                 
                 if total_acc > 0.97:
-                    break;
+                    break
                     
         print("Reward function is updated!! ACC: " + str(total_acc))
 
     def run(self):
+        print("running")
         episode, episode_reward, done = 0, 0, True
         if self.log_success:
             episode_success = 0
@@ -319,7 +321,10 @@ class Workspace(object):
 @hydra.main(config_path='config/train_PEBBLE.yaml', strict=True)
 def main(cfg):
     workspace = Workspace(cfg)
+    print("after workspace, before run")
     workspace.run()
 
 if __name__ == '__main__':
+    print('hello')
     main()
+    print('goodbye')

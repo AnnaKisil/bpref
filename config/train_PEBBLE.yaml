@@ -48,7 +48,7 @@ save_video: false
 seed: 1
 
 # Environment
-env: dog_stand
+env: metaworld_button-press-v2 # dog_stand
 gradient_update: 1
 
 # hydra configuration

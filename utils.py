@@ -16,6 +16,7 @@ from collections import deque
 from skimage.util.shape import view_as_windows
 from torch import nn
 from torch import distributions as pyd
+
     
 def make_env(cfg):
     """Helper function to create dm_control environment"""
@@ -29,7 +30,9 @@ def make_env(cfg):
     env = dmc2gym.make(domain_name=domain_name,
                        task_name=task_name,
                        seed=cfg.seed,
-                       visualize_reward=False)
+                       visualize_reward=False,
+                       render_mode="human",
+                       render=True)
     env.seed(cfg.seed)
     assert env.action_space.low.min() >= -1
     assert env.action_space.high.max() <= 1
